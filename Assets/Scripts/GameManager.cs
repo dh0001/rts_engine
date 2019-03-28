@@ -22,7 +22,17 @@ public class GameManager : MonoBehaviour
 
 
         // start game loop
+        StartCoroutine(Loop());
+    }
 
+    private IEnumerator Loop()
+    {
+        // 
+        while (true)
+        {
 
+            yield return null;
+        }
+        
     }
 }

@@ -1,4 +1,4 @@
-﻿    using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     List<UnitManager> units;
 
     // initialize
-    private void Start()
+    private void Start() 
     {
         // create units, will be passed a list of units to create, somehow
         List<string> passed = new List<string>();
@@ -16,22 +16,14 @@ public class GameManager : MonoBehaviour
         units = new List<UnitManager>();
 
         foreach (var p in passed)
-        {
             units.Add(new UnitManager(p));
-        }
-
-
-        // start game loop
-        StartCoroutine(Loop());
     }
 
-    private IEnumerator Loop()
-    {
-        // 
-        while (true)
-        {
-            yield return null;
-        }
+
+    void FixedUpdate() {
+        // check how many ticks have passed
+        // check the user's current input
+        // run through the ticks
         
     }
 }

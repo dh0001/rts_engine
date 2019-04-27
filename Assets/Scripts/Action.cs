@@ -1,4 +1,4 @@
-
+﻿
 using System;
 
 /// <summary>Thrown when an action cannot be made.</summary>

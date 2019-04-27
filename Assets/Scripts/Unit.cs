@@ -1,4 +1,3 @@
-﻿
 using System.Collections.Generic;
 
 
@@ -25,16 +24,3 @@ public abstract class Unit
     ///<summary>Check if it is okay to execute an action.</summary>
     protected abstract bool CheckAction();
 }
-
-
-// public abstract class Hero : Unit{
-
-// }
-
-
-// public class ExampleHero : Unit
-// {
-//     ExampleHero(int visionRange, int maxHealth) : base(visionRange, maxHealth)
-//     {
-//     }
-// }

@@ -25,9 +25,9 @@ public abstract class Action
     public abstract void Cancel();
 
     ///<summary>Check if it is okay to execute the action.</summary>
-    protected abstract void ExecuteAction();
+    protected abstract void Start();
     public void TryExecuteAction(){
-        ExecuteAction();
+        Start();
         actingUnit.ExecuteAction(this);
     }
 }
@@ -41,7 +41,7 @@ public class MoveAction : Action
     {
     }
 
-    protected override void ExecuteAction(){
+    protected override void Start(){
 
     }
 

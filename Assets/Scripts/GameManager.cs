@@ -32,9 +32,18 @@ public class GameManager : MonoBehaviour
     ///<summary>The time that has elapsed in game.</summary>
     int gameTime;
 
+    ///<summary>Actions created by UI.</summary>
+    List<Action> newActions;
+
 
     /// <summary>An interface used by the UI/AI/Network to attach actions to units. </summary>
     public void CreateAction(Action action){
+        // create action and add to a latest tick
+        newActions.Add(action);
+    }
+
+
+    public void CreateActions(List<Action> action){
         // create action and add to a latest tick
     }
 
@@ -59,9 +68,18 @@ public class GameManager : MonoBehaviour
     ///<summary>Populates the ticks property with what has happened since the last time the game was updated.</summary>
     void GetUpdates()
     {
-        for (; lastUpdate < gameTime; lastUpdate += TICK_RATE)
+        // get all ticks except 'last' tick
+        for (; lastUpdate < gameTime - TICK_RATE; lastUpdate += TICK_RATE)
         {
             ticks.Add(new Tick());
+        }
+
+        //add ui actions to the last tick
+        if (lastUpdate < gameTime){
+            var t = new  Tick();
+            t.actions = newActions;
+            newActions = new List<Action>();
+            ticks.Add(t);
         }
     }
 
@@ -79,7 +97,6 @@ public class GameManager : MonoBehaviour
             Vector3 mousePosition = Input.mousePosition;
             buttonPressedCount++;
             Text.text = buttonPressedCount.ToString();
-
         }
 
         // update game

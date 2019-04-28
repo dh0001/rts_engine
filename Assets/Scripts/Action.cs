@@ -4,10 +4,10 @@ using System;
 /// <summary>Thrown when an action cannot be made.</summary>
 public class ActionException : Exception {
 
-    public string errorMessage;
+    public string ErrorMessage;
 
     public ActionException(string errMsg){
-        errorMessage = errMsg;
+        ErrorMessage = errMsg;
     }
 }
 

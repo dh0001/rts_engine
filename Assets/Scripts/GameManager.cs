@@ -11,14 +11,14 @@ struct Tick{
 ///<summary>Manages information about the game, its progress, and its operation.</summary>
 public class GameManager : MonoBehaviour
 {
-    public Text text;
+    public Text Text;
     int buttonPressedCount = 0;
 
     ///<summary>Contains every unit in the game.</summary>
-    List<UnitManager> units;
+    List<UnitManager> units = new List<UnitManager>();
 
     ///<summary>Current ticks in queue.</summary>
-    List<Tick> ticks;
+    List<Tick> ticks = new List<Tick>();
 
     ///<summary>How much time between every tick, in milliseconds.</summary>
     const int TICK_RATE = 300;
@@ -72,40 +72,28 @@ public class GameManager : MonoBehaviour
         //bool paused = false;
 
         // game loop
-        while (true)
+        GetUpdates();
+
+        if (Input.GetMouseButtonDown(1))
         {
-            GetUpdates();
+            Vector3 mousePosition = Input.mousePosition;
+            buttonPressedCount++;
+            Text.text = buttonPressedCount.ToString();
 
-            // update game
-            foreach (var tick in ticks)
-            {
-                // populate actions
-                foreach (var action in tick.actions){
-                    action.TryExecuteAction();
-                }
-
-                // elapse units
-                foreach(var unit in units){
-                    unit.Elapse();
-                }
-            }
         }
-    }
 
-
-    private IEnumerator Loop()
-    {
-        // 
-        while (true)
+        // update game
+        foreach (var tick in ticks)
         {
-            if (Input.GetMouseButtonDown(1))
-            {
-                Vector3 mousePosition = Input.mousePosition;
-                buttonPressedCount++;
-                text.text = buttonPressedCount.ToString();
-
+            // populate actions
+            foreach (var action in tick.actions){
+                action.TryExecuteAction();
             }
-            yield return null;
+
+            // elapse units
+            foreach(var unit in units){
+                unit.Elapse();
+            }
         }
     }
 }

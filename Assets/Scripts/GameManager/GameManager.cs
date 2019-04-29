@@ -36,15 +36,14 @@ public class GameManager : MonoBehaviour
     List<Action> newActions;
 
 
-    /// <summary>An interface used by the UI/AI/Network to attach actions to units. </summary>
+    /// <summary>An interface used by the UI/AI/Network to add an action. </summary>
     public void CreateAction(Action action){
-        // create action and add to a latest tick
         newActions.Add(action);
     }
 
-
-    public void CreateActions(List<Action> action){
-        // create action and add to a latest tick
+    /// <summary>An interface used by the UI/AI/Network to add actions. </summary>
+    public void CreateActions(List<Action> actions){
+        newActions.AddRange(actions);
     }
 
 
@@ -70,13 +69,13 @@ public class GameManager : MonoBehaviour
     ///<summary>Populates the ticks property with what has happened since the last time the game was updated.</summary>
     void GetUpdates()
     {
-        // get all ticks except 'last' tick
+        // add skipped ticks
         for (; lastUpdate < gameTime - TICK_RATE; lastUpdate += TICK_RATE)
         {
             ticks.Add(new Tick());
         }
 
-        //add ui actions to the last tick
+        // add ui actions to the last tick
         if (lastUpdate < gameTime){
             var t = new Tick();
             t.actions = newActions;

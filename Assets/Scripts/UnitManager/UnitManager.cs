@@ -40,5 +40,7 @@ public class UnitManager
     public void ExecuteAction(Action a){
         // check to see if doing the action is possible
 
+        // then add to list of actions
+        actions.Add(a);
     }
 }

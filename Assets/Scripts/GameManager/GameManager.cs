@@ -21,16 +21,16 @@ public class GameManager : MonoBehaviour
     List<Tick> ticks = new List<Tick>();
 
     ///<summary>How much time between every tick, in milliseconds.</summary>
-    const int TICK_RATE = 300;
+    const long TICK_RATE = 300;
 
     ///<summary>The last time the game was updated.</summary>
-    int lastUpdate;
+    long lastUpdate;
 
     ///<summary>When the game started.</summary>
-    int gameStarted;
+    long gameStarted;
     
     ///<summary>The time that has elapsed in game.</summary>
-    int gameTime;
+    long gameTime;
 
     ///<summary>Actions created by UI.</summary>
     List<Action> newActions;
@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
 
         CreateAction(new MoveAction(units[0], new Vector3(75, 0, 75)));
 
+        gameStarted = System.DateTimeOffset.Now.ToUnixTimeMilliseconds();
         gameTime = 0;
     }
 
@@ -77,11 +78,14 @@ public class GameManager : MonoBehaviour
 
         // add ui actions to the last tick
         if (lastUpdate < gameTime){
+            lastUpdate += TICK_RATE;
             var t = new Tick();
             t.actions = newActions;
             newActions = new List<Action>();
             ticks.Add(t);
         }
+
+        gameTime = System.DateTimeOffset.Now.ToUnixTimeMilliseconds() - gameStarted;
     }
 
 

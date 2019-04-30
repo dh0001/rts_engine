@@ -41,13 +41,14 @@ public class MoveAction : Action
     NavMeshAgent agent; 
 
     public MoveAction(UnitManager u, Vector3 destination) : base(u) {
+        
         dest = destination;
         agent = u.model.GetComponent<NavMeshAgent>();
     }
 
     public override void Elapse()
     {
-        agent.destination = dest;
+        agent.SetDestination(dest);
     }
 
     protected override void Start(){

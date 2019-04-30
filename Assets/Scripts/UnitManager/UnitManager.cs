@@ -8,8 +8,8 @@ public class UnitManager
 {
     public GameObject model;
     private int health;
-    private List<Action> actions;
-    private List<Modifier> modifiers;
+    private List<Action> actions = new List<Action>();
+    private List<Modifier> modifiers = new List<Modifier>();
     private Unit unit;
 
     // Alternative to using Resources.Load: https://unity3d.com/learn/tutorials/topics/best-practices/assetbundle-usage-patterns
@@ -18,7 +18,7 @@ public class UnitManager
     {
         // load model
         model = Resources.Load("Units/Sphere") as GameObject;
-        Object.Instantiate(model, new Vector3(-5, 2, -5), new Quaternion(0, 0, 0, 0));
+        Object.Instantiate(model, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
 
         // set stats
     }
@@ -33,8 +33,6 @@ public class UnitManager
             modifier.Elapse();
         }
     }
-
-
 
     ///<summary>Attempt to execute an action.</summary>
     public void ExecuteAction(Action a){

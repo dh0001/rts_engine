@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     long gameTime;
 
     ///<summary>Actions created by UI.</summary>
-    List<Action> newActions;
+    List<Action> newActions = new List<Action>();
 
 
     /// <summary>An interface used by the UI/AI/Network to add an action. </summary>
@@ -109,14 +109,21 @@ public class GameManager : MonoBehaviour
         foreach (var tick in ticks)
         {
             // populate actions
-            foreach (var action in tick.actions){
-                action.TryExecuteAction();
+            if (tick.actions != null)
+            {
+                foreach (var action in tick.actions)
+                {
+                    action.TryExecuteAction();
+                }
             }
-
             // elapse units
-            foreach (var unit in units){
+            foreach (var unit in units)
+            {
                 unit.Elapse();
             }
         }
+
+        // reset ticks
+        ticks = new List<Tick>();
     }
 }

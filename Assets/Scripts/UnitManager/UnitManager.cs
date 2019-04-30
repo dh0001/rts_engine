@@ -16,11 +16,15 @@ public class UnitManager
     // It is actually the recommended way of loading resources without a public reference to them, but a bit complex.
     public UnitManager(string s)
     {
+        Vector3 spawnPosition = new Vector3(0, 0, 0);
+
         // load model
         model = Resources.Load("Units/Sphere") as GameObject;
-        Object.Instantiate(model, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+        model = Object.Instantiate(model, spawnPosition, new Quaternion(0, 0, 0, 0)) as GameObject;
 
-        // set stats
+        // set position to be something on navMesh
+        NavMeshAgent agent = model.GetComponent<NavMeshAgent>();
+        agent.Warp(spawnPosition);
     }
 
     public void Elapse()

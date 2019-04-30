@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
             units.Add(new UnitManager(p));
         }
 
-        CreateAction(new MoveAction(units[0], new Vector3(75, 0, 75)));
+        CreateAction(new MoveAction(units[0], new Vector3(-10, 0, -10)));
 
         gameStarted = System.DateTimeOffset.Now.ToUnixTimeMilliseconds();
         gameTime = 0;

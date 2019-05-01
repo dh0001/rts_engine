@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
 
 
     ///<summary>Populates the ticks property with what has happened since the last time the game was updated.</summary>
+    /*  */
     void GetUpdates()
     {
         // add skipped ticks
@@ -97,14 +98,6 @@ public class GameManager : MonoBehaviour
         // game loop
         GetUpdates();
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            Vector3 clickedPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 mousePosition = Input.mousePosition;
-            buttonPressedCount++;
-            Text.text = buttonPressedCount.ToString();
-        }
-
         // update game
         foreach (var tick in ticks)
         {
@@ -113,6 +106,7 @@ public class GameManager : MonoBehaviour
             {
                 foreach (var action in tick.actions)
                 {
+
                     action.TryExecuteAction();
                 }
             }

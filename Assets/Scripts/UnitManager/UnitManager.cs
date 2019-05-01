@@ -8,7 +8,7 @@ public class UnitManager
 {
     public GameObject model;
     private int health;
-    private List<Action> actions = new List<Action>();
+    public List<Action> actions = new List<Action>();
     private List<Modifier> modifiers = new List<Modifier>();
     private Unit unit;
 

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-struct Tick{
+struct Tick
+{
     public List<Action> actions;
 }
 
@@ -11,8 +12,8 @@ struct Tick{
 ///<summary>Manages information about the game, its progress, and its operation.</summary>
 public class GameManager : MonoBehaviour
 {
-    public Text Text;
-    int buttonPressedCount = 0;
+    /// <summary>Contains a reference to the ground.</summary>
+    public GameObject Ground;
 
     ///<summary>Contains every unit in the game.</summary>
     List<UnitManager> units = new List<UnitManager>();
@@ -35,6 +36,14 @@ public class GameManager : MonoBehaviour
     ///<summary>Actions created by UI.</summary>
     List<Action> newActions = new List<Action>();
 
+    /// <summary>References the UIManager for the game.</summary>
+    UIManager UIManager;
+
+
+    public GameManager()
+    {
+        UIManager = new UIManager(this);
+    }
 
     /// <summary>An interface used by the UI/AI/Network to add an action. </summary>
     public void CreateAction(Action action){
@@ -57,10 +66,11 @@ public class GameManager : MonoBehaviour
 
         foreach (var p in passed)
         {
-            units.Add(new UnitManager(p));
+            units.Add(new UnitManager(p, UIManager));
         }
 
-        CreateAction(new MoveAction(units[0], new Vector3(-10, 0, -10)));
+        // Setting the UI Manager for the ground
+        Ground.GetComponent<GetClick>().AttachUIManager(UIManager);
 
         gameStarted = System.DateTimeOffset.Now.ToUnixTimeMilliseconds();
         gameTime = 0;

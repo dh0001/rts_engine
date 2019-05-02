@@ -27,7 +27,7 @@ public class UIManager
             if (clickEvent.button == PointerEventData.InputButton.Left)
             {
                 var component = rcResult.gameObject.GetComponent<UnitScript>();
-                if (SelectedUnit == null && component != null)
+                if (component != null)
                 {
                     SelectedUnit = component.GetReference();
                 }

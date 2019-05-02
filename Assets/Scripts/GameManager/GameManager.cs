@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
     ///<summary>Current ticks in queue.</summary>
     List<Tick> ticks = new List<Tick>();
 
-    ///<summary>How much time between every tick, in milliseconds.</summary>
-    const long TICK_RATE = 300;
+    // ///<summary>How much time between every tick, in milliseconds.</summary>
+    // const long TICK_RATE = 30;
 
     ///<summary>The last time the game was updated.</summary>
     long lastUpdate;
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    void Start()
+    void Awake()
     {
         // create units, will be passed a list of units to create, somehow
         List<string> passed = new List<string>();
@@ -82,21 +82,21 @@ public class GameManager : MonoBehaviour
     void GetUpdates()
     {
         // add skipped ticks
-        for (; lastUpdate < gameTime - TICK_RATE; lastUpdate += TICK_RATE)
-        {
-            ticks.Add(new Tick());
-        }
+        // for (; lastUpdate < gameTime - TICK_RATE * 2; lastUpdate += TICK_RATE)
+        // {
+        //     ticks.Add(new Tick());
+        // }
 
         // add ui actions to the last tick
-        if (lastUpdate < gameTime){
-            lastUpdate += TICK_RATE;
+       // if (lastUpdate < gameTime - TICK_RATE){
+            //lastUpdate += TICK_RATE;
             var t = new Tick();
             t.actions = newActions;
             newActions = new List<Action>();
             ticks.Add(t);
-        }
+        //}
 
-        gameTime = System.DateTimeOffset.Now.ToUnixTimeMilliseconds() - gameStarted;
+        //gameTime = System.DateTimeOffset.Now.ToUnixTimeMilliseconds() - gameStarted;
     }
 
 

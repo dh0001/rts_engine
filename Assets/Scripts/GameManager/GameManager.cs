@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
         // create units, will be passed a list of units to create, somehow
         List<string> passed = new List<string>();
         passed.Add("axe");
-        passed.Add("something");
+        //passed.Add("something");
 
         units = new List<UnitManager>();
 

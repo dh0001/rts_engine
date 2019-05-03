@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class UnitManager
 {
     public GameObject model;
-    private int health;
+    public int health;
     public List<Action> actions = new List<Action>();
     private List<Modifier> modifiers = new List<Modifier>();
     private Unit unit;

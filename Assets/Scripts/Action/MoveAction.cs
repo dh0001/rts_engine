@@ -41,6 +41,7 @@ public class MoveAction : Action
         agent.speed = 20 * actingUnit.movementSpeed;
         agent.acceleration = 10000;
         agent.angularSpeed = 10000;
+        agent.obstacleAvoidanceType = ObstacleAvoidanceType.MedQualityObstacleAvoidance;
         //agent.autoBraking = false;
         NavMesh.CalculatePath(actingUnit.model.transform.position, dest, 0, path);
     }

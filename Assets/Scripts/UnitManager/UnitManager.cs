@@ -11,7 +11,7 @@ public class UnitManager
     public List<Action> actions = new List<Action>();
     private List<Modifier> modifiers = new List<Modifier>();
     private Unit unit;
-    public int movementSpeed = 1;
+    public int movementSpeed = 2;
 
     /// <summary>
     /// Constructs a unit based on the name of the unit being passed in.
